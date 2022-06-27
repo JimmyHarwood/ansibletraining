@@ -6,3 +6,5 @@
     include_tasks: plays/deploy_ssh.yml
   - name: copy example
     include_tasks: plays/copy_example.yml
+  - name: simple variable
+    include_tasks: plays/simple_variable.yml

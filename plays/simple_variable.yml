@@ -1,0 +1,5 @@
+---
+- name: simple variable
+  ansible.builtin.debug:
+    msg: "{{ greeting }}"
+
