@@ -1,0 +1,12 @@
+---
+greeting: Hello World!
+users:
+  - name: user1
+    uid: 2001
+    comment: first
+  - name: user2
+    uid: 2002
+    comment: second
+  - name: user3
+    uid: 2003
+    comment: third
