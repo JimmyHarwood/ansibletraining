@@ -1,0 +1,6 @@
+---
+- name: deployment playbook
+  hosts: all
+  tasks:
+  - name: deploy SSH keys to remote hosts
+    include_tasks: plays/deploy_ssh.yml
