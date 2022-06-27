@@ -7,6 +7,13 @@
     mode: 0644
 
 - copy:
+    src: /home/ubuntu/ansible/London.txt
+    dest: /tmp/London.txt
+    owner: root
+    group: root
+    mode: 700
+
+- copy:
     content: |
       This is a new file
       I have created the contents here!
