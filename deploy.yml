@@ -1,15 +1,8 @@
 ---
 - name: deployment playbook
   hosts: all
-  vars_files:
-# - user_list.yml
-    - secrets.yml
+  vars:
+    - var1: Hey chef, hows it going
   tasks:
-#  - name: deploy SSH keys to remote hosts
-#    include_tasks: plays/deploy_ssh.yml
-#  - name: copy example
-#    include_tasks: plays/copy_example.yml
-#  - name: simple variable
-#    include_tasks: plays/simple_variable.yml
-    - name: add users
-      include_tasks: plays/users.yml
+    - name: template example
+      include_tasks: plays/template.yml
