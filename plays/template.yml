@@ -2,7 +2,7 @@
 - name: Template a file to /tmp/result.txt
   template:
     src: example.j2
-    dest: /tmp/result.txt
+    dest: /tmp/server_info.txt
     owner: ubuntu
     group: ubuntu
     mode: '0644'

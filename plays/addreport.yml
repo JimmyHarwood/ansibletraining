@@ -1,0 +1,8 @@
+---
+- name: create file on t2.nano
+  file:
+    path: /tmp/report.txt
+    state: touch
+    mode: 0644
+ when: instance_type.stdout == "t2.nano"
+

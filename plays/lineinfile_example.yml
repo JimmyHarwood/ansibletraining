@@ -1,0 +1,12 @@
+---
+- name: Ensure PasswordAuthentication is set to no
+  ansible.builtin.lineinfile:
+    path: /tmp/sshd_config
+    regexp: '^PasswordAuthentication yes'
+    line: PasswordAuthentication no
+
+- name: ensure PermitEmptyPasswords is unhashed
+  ansible.builtin.lineinfile:
+    path: /tmp/sshd_config
+    insertafter: '^PasswordAuthentication yes'
+    line: PermitEmptyPasswords yes
