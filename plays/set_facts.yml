@@ -1,0 +1,32 @@
+---
+- set_fact:
+    one: hello
+    two: "{{ ansible_local.local.local_facts.instance_type }}"
+    DC: "{% if ansible_local.local.local_facts.instance_type == 't2.micro' %}DC1\
+         {% elif ansible_local.local.local_facts.instance_type == 't2.nano' %}DC2\
+         {% else %}DC3\
+         {% endif %}"
+    mem: "{% if ansible_memtotal_mb < 500 %}'below 500MB'\
+          {% else %}'above 500MB'\
+          {% endif %}"
+
+
+- name: output one
+  debug:
+    msg: "{{ one }}"
+
+- name: output instance type
+  debug:
+    msg: "{{ two }}"
+
+- name: output DC
+  debug:
+    msg: "Your DC is: {{ DC }}"
+
+- name: combine
+  debug:
+    msg: "I'd like to say {{ one }}, I'm a {{ two }} instance in AWS and I live in Datacentre: {{ DC }}."
+
+- name: output memory
+  debug:
+    msg: "my total memory is {{ mem }}"

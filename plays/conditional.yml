@@ -1,43 +1,14 @@
 ---
-#- name: create ubuntu file if condition matches
-#  file:
-#    path: /tmp/I_am_ubuntu
-#    state: touch
-#    mode: 0644
-#  when: ansible_os_family == "Debian"
-#- name: create file in tmp when ubuntu
-#  file:
-#    path: /tmp/I_am_ubuntu_host_group_names
-#    state: touch
-#    mode: 0644
-#  when: "'ubuntu' not in group_names"
-- name: collect ec2 instance type
-  command: curl -s http://169.254.169.254/latest/meta-data/instance-type
-  register: instance_type
-
-- name: instance_type output
-  ansible.builtin.debug:
-    var: instance_type.stdout
-
-- name: create big file on t2.micro machines
-  ansible.builtin.copy:
-    src: /tmp/bigfile
-    dest: /tmp/report.txt
+- name: create ubuntu file if condition matches
+  file:
+    path: /tmp/I_am_ubuntu
+    state: touch
     mode: 0644
-  when: instance_type.stdout == "t2.micro"
+  when: ansible_os_family == "Debian"
 
-- name: create tiny file on t2.nano machines
-  ansible.builtin.copy:
-    src: /tmp/tinyfile
-    dest: /tmp/report.txt
+- name: create file when we match the host group name
+  file:
+    path: /tmp/I_am_NOT_IN_ubuntu_host_group_names
+    state: touch
     mode: 0644
-  when: instance_type.stdout == "t2.nano"
-
-- name: collect report text
-  command: cat /tmp/report.txt
-  register: report_txt
-
-- name: instance_type output
-  ansible.builtin.debug:
-    msg: 
-    - "your report.txt file contains '{{ report_txt.stdout}}' and your instance name is '{{ instance_type.stdout }}'"
+  when: "'ubuntu' not in group_names"

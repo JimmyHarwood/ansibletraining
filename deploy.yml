@@ -1,14 +1,6 @@
 ---
 - name: deployment playbook
   hosts: all
-  vars:
-    - var1: Hey chef, hows it going
   tasks:
-      #- name: template example
-      #  include_tasks: plays/template.yml
-      #- name: lineinfile replace pg46
-      #  include_tasks: plays/lineinfile_example.yml
-      - name: deploy_ssh key
-        include_tasks: plays/deploy_ssh.yml
-      - name: Conditional example
-        include_tasks: plays/conditional.yml
+  - name: conditional example
+    include_tasks: plays/set_facts.yml

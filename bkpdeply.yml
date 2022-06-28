@@ -1,0 +1,16 @@
+---
+- name: run local facts setup
+  hosts: all
+  gather_facts: true
+  roles:
+    - local_facts
+
+- name: deployment playbook
+  hosts: all
+  vars:
+    - var1: Hey chef, hows it going
+  tasks:
+          #- name: Conditional example
+          #include_tasks: plays/conditional.yml
+    - name: set fct example
+      include_tasks: plays/set_facts.yml

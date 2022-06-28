@@ -1,0 +1,30 @@
+---
+- name: Create custom fact directory
+  file:
+    path: /etc/ansible/facts.d
+    state: directory
+    mode: '0747'
+  become: True
+
+- name: Insert empty local fact file
+  copy:
+    src: files/local.fact
+    dest: /etc/ansible/facts.d/local.fact
+    mode: '0646'
+
+- name: Insert custom fact script
+  copy:
+    src: files/customFactSetup.sh
+    dest: /tmp/customFactSetup.sh
+    mode: '0755'
+
+- name: add Instance facts
+  command: /tmp/customFactSetup.sh
+
+- name: local facts
+  debug: var=ansible_local
+  notify:
+  - reload facts
+
+- name: reload facts
+  setup: filter=ansible_local
